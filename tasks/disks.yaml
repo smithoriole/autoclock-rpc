@@ -24,3 +24,30 @@
     dest: /etc/fstab
     state: present
     line: "/dev/{{ ledger_disk }}    /mnt/solana-ledger    ext4    defaults    0    1"
+
+- name: check mount 2
+  become: true
+  become_user: root
+  shell: df -h | grep mnt/solana-snapshots
+  ignore_errors: yes
+  register: mount_mnt
+
+- name: format disks with ext4 2
+  become: true
+  become_user: root
+  shell: mkfs.ext4 /dev/{{ snapshot_disk }}
+  when: mount_mnt.rc != 0
+
+- name: mount disks for snapshot
+  become: true
+  become_user: root
+  shell: mount /dev/{{ snapshot_disk }} /mnt/solana-snapshots && chown -R solana:solana /mnt/solana-snapshots
+  when: mount_mnt.rc != 0
+
+- name: add mounted disk to fstab
+  become: true
+  become_user: root
+  lineinfile:
+    dest: /etc/fstab
+    state: present
+    line: "/dev/{{ snapshot_disk }}    /mnt/solana-snapshots    ext4    defaults    0    1"    
