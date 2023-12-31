@@ -11,7 +11,6 @@ exec /mnt/solana/target/release/solana-validator \
 --dynamic-port-range 8002-8099 \
 --no-port-check \
 --gossip-port 8001 \
---no-untrusted-rpc \
 --no-voting \
 --private-rpc \
 --rpc-bind-address 0.0.0.0 \
