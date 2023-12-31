@@ -38,13 +38,13 @@
   shell: mkfs.ext4 /dev/{{ snapshot_disk }}
   when: mount_mnt.rc != 0
 
-- name: mount disks for snapshot
+- name: mount disks for snapshot 2
   become: true
   become_user: root
   shell: mount /dev/{{ snapshot_disk }} /mnt/solana-snapshots && chown -R solana:solana /mnt/solana-snapshots
   when: mount_mnt.rc != 0
 
-- name: add mounted disk to fstab
+- name: add mounted disk to fstab 2
   become: true
   become_user: root
   lineinfile:
