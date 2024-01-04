@@ -1,8 +1,8 @@
 ---
 # defaults file for Solana RPC
 solana_version: "v1.16.24"
-ledger_disk: "nvme2n1"
-snapshot_disk: "nvme3n1"
+ledger_disk: "nvme0n1"
+snapshot_disk: "nvme1n1"
 setup_disks: "true"
 download_snapshot: "true"
 ramdisk_size: 300
