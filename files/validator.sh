@@ -7,7 +7,7 @@ exec /mnt/solana/target/release/solana-validator \
 --entrypoint entrypoint3.mainnet-beta.solana.com:8001 \
 --entrypoint entrypoint4.mainnet-beta.solana.com:8001 \
 --entrypoint entrypoint5.mainnet-beta.solana.com:8001 \
---rpc-port 8899 \
+--rpc-port 2504 \
 --dynamic-port-range 8002-8099 \
 --no-port-check \
 --gossip-port 8001 \
@@ -15,18 +15,19 @@ exec /mnt/solana/target/release/solana-validator \
 --private-rpc \
 --rpc-bind-address 0.0.0.0 \
 --enable-cpi-and-log-storage \
---account-index program-id \
+--account-index program-id spl-token-owner \
+--rpc-threads 300 \
 --enable-rpc-transaction-history \
 --wal-recovery-mode skip_any_corrupted_record \
 --log /mnt/logs/solana-validator.log \
 --accounts /mnt/solana-accounts \
 --ledger /mnt/solana-ledger \
---snapshots /mnt/solana-snapshots \
+--no-genesis-fetch \
 --no-snapshot-fetch \
+--snapshots /mnt/solana-snapshots \
 --limit-ledger-size 400000000 \
---rpc-send-default-max-retries 3 \
---rpc-send-service-max-retries 3 \
---rpc-send-retry-ms 2000 \
+--rpc-send-retry-ms 1 \
+--expected-genesis-hash 5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d \
 --full-rpc-api \
 --accounts-index-memory-limit-mb 350 \
 --account-index-exclude-key kinXdEcpDQeHPEuQnqmUgtYykqKGVFq6CeVX5iAHJq6 \
