@@ -37,6 +37,12 @@ screen -S sol
 sudo apt-get update && sudo apt-get install ansible -y
 ```
 
+### Step X: Install protobuf-compiler
+
+```
+sudo apt-get install protobuf-compiler
+```
+
 ### Step 4: Clone the autoclock-rpc repository
 
 ```
