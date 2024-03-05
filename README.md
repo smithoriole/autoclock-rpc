@@ -39,7 +39,7 @@ sudo apt-get update && sudo apt-get install ansible -y
 ### Step X: Update packages
 
 ```
-### Step 3: Install ansible
+sudo apt-get upgrade
 
 ```
 
