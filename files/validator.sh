@@ -16,7 +16,6 @@ exec /mnt/solana/target/release/solana-validator \
 --rpc-bind-address 0.0.0.0 \
 --enable-cpi-and-log-storage \
 --account-index program-id spl-token-owner \
---rpc-threads 300 \
 --enable-rpc-transaction-history \
 --wal-recovery-mode skip_any_corrupted_record \
 --log /mnt/logs/solana-validator.log \
@@ -24,7 +23,6 @@ exec /mnt/solana/target/release/solana-validator \
 --ledger /mnt/solana-ledger \
 --snapshots /mnt/solana-snapshots \
 --limit-ledger-size 400000000 \
---rpc-send-retry-ms 1 \
 --full-rpc-api \
 --accounts-index-memory-limit-mb 350 \
 --account-index-exclude-key kinXdEcpDQeHPEuQnqmUgtYykqKGVFq6CeVX5iAHJq6 \
