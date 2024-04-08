@@ -51,3 +51,30 @@
     dest: /etc/fstab
     state: present
     line: "/dev/{{ snapshot_disk }}    /mnt/solana-snapshots    ext4    defaults    0    1"    
+
+- name: check mount 3
+  become: true
+  become_user: root
+  shell: df -h | grep mnt/swapdisk
+  ignore_errors: yes
+  register: mount_mnt
+
+- name: format disks with ext4
+  become: true
+  become_user: root
+  shell: mkfs.ext4 /dev/{{ swap_disk }}
+  when: mount_mnt.rc != 0
+
+- name: mount disks for ledger
+  become: true
+  become_user: root
+  shell: mount /dev/{{ swap_disk }} /mnt/swapdisk && chown -R solana:solana /mnt/swapdisk
+  when: mount_mnt.rc != 0
+
+- name: add mounted disk to fstab
+  become: true
+  become_user: root
+  lineinfile:
+    dest: /etc/fstab
+    state: present
+    line: "/dev/{{ swap_disk }}    /mnt/swapdisk    ext4    defaults    0    1"
