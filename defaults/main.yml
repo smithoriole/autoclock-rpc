@@ -6,5 +6,5 @@ snapshot_disk: "nvme1n1"
 setup_disks: "true"
 download_snapshot: "true"
 ramdisk_size: 300
-swap_mb: "100000"
+swap_mb: "150000"
 
