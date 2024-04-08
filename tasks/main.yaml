@@ -12,16 +12,16 @@
 - name: folders
   include_tasks: dirs.yaml
 
+- name: setup disks
+  include_tasks: disks.yaml
+  when: setup_disks|default(false)|bool == true
+
 - name: swap
   include_tasks: swap.yaml
 
 - name: ramdisk
   include_tasks: ramdisk.yaml
   when: ramdisk_size is defined
-
-- name: setup disks
-  include_tasks: disks.yaml
-  when: setup_disks|default(false)|bool == true
 
 - name: logrotate
   include_tasks: rotate.yaml
