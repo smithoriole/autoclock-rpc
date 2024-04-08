@@ -43,3 +43,12 @@
     state: directory
     owner: solana
     group: solana
+
+- name: solana swap
+  file:
+    path: /mnt/swapdisk
+    state: directory
+    owner: solana
+    group: solana
+  become: true
+  become_user: root
