@@ -2,14 +2,14 @@
   become: true
   become_user: root
   command:
-    dd if=/dev/zero of=/dev/nvme1n1p1/swapfile bs=1024 count={{ swap_mb }}k
-    creates="/dev/nvme1n1p1/swapfile"
+    dd if=/dev/zero of=/mnt/swapdisk/swapfile bs=1024 count={{ swap_mb }}k
+    creates="/mnt/swapdisk/swapfile"
 
 - name: Change swap file permissions
   become: true
   become_user: root
   file: 
-    path=/dev/nvme1n1p1/swapfile
+    path=/mnt/swapdisk/swapfile
     owner=root
     group=root
     mode=0600
@@ -17,20 +17,20 @@
 - name: Check swap file type
   become: true
   become_user: root
-  command: file /dev/nvme1n1p1/swapfile
+  command: file /mnt/swapdisk/swapfile
   register: swapfile
 
 - name: Make swap file
   become: true
   become_user: root
-  command: "sudo mkswap /dev/nvme1n1p1/swapfile"
+  command: "sudo mkswap /mnt/swapdisk/swapfile"
   when: swapfile.stdout.find('swap file') == -1
 
 - name: Write swap entry in fstab
   become: true
   become_user: root
   mount: name=none
-    src=/dev/nvme1n1p1/swapfile
+    src=/mnt/swapdisk/swapfile
     fstype=swap
     opts=sw
     passno=0
@@ -41,11 +41,11 @@
   become: true
   become_user: root
   ignore_errors: yes
-  shell: swapon -show | grep /dev/nvme1n1p1/swapfile
+  shell: swapon -show | grep /mnt/swapdisk/swapfile
   register: swap_check
 
 - name: Mount swap
   become: true
   become_user: root
-  command: "swapon /dev/nvme1n1p1/swapfile"
+  command: "swapon /mnt/swapdisk/swapfile"
   when: swap_check.rc != 0
