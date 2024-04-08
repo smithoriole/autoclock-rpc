@@ -65,7 +65,7 @@ Press **n** to create a new partition.
 Choose **p** for a primary partition.
 Enter **1** as the partition number.
 Press Enter to select the default first sector.
-Enter **+750G **as the last sector to allocate 750 GB for the first partition.
+Enter **+750G** as the last sector to allocate 750 GB for the first partition.
 Create the Second Partition (Rest of the Disk):
 
 Press **n** to create a new partition.
