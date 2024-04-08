@@ -59,19 +59,19 @@
   ignore_errors: yes
   register: mount_mnt
 
-- name: format disks with ext4
+- name: format disks with ext4 3
   become: true
   become_user: root
   shell: mkfs.ext4 /dev/{{ swap_disk }}
   when: mount_mnt.rc != 0
 
-- name: mount disks for ledger
+- name: mount disks for ledger 3
   become: true
   become_user: root
   shell: mount /dev/{{ swap_disk }} /mnt/swapdisk && chown -R solana:solana /mnt/swapdisk
   when: mount_mnt.rc != 0
 
-- name: add mounted disk to fstab
+- name: add mounted disk to fstab 3
   become: true
   become_user: root
   lineinfile:
