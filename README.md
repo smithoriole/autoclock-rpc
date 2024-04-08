@@ -48,6 +48,38 @@ sudo apt-get upgrade
 ```
 sudo apt-get install protobuf-compiler
 ```
+### Step X: Install jq
+
+```
+sudo apt install jq
+```
+### Step X: Create partition
+
+```
+sudo fdisk /dev/nvme1n1
+sudo mkfs.ext4 /dev/nvme1n1p1
+sudo mkfs.ext4 /dev/nvme1n1p2
+
+```
+Press **n** to create a new partition.
+Choose **p** for a primary partition.
+Enter **1** as the partition number.
+Press Enter to select the default first sector.
+Enter **+750G **as the last sector to allocate 750 GB for the first partition.
+Create the Second Partition (Rest of the Disk):
+
+Press **n** to create a new partition.
+Choose **p** for a primary partition.
+Enter **2** as the partition number.
+Press **Enter** to select the default first sector.
+Press **Enter** again to select the default last sector, using the rest of the disk.
+Verify the Partition Layout:
+
+Type **p** to print the partition table and verify that the partitions are created as expected.
+Write the Changes and Exit:
+
+Type **w** to write the changes to the disk and exit fdisk.
+
 
 ### Step 4: Clone the autoclock-rpc repository
 
