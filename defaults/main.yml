@@ -2,7 +2,7 @@
 # defaults file for Solana RPC
 solana_version: "v1.17.28"
 ledger_disk: "nvme0n1"
-snapshot_disk: "nvme1n1"
+snapshot_disk: "nvme1n1p2"
 setup_disks: "true"
 download_snapshot: "true"
 ramdisk_size: 300
